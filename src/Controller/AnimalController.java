@@ -22,7 +22,7 @@ try {
     String sql = "INSERT INTO Animal (nome, cor, tamanho, raca, nascimento) VALUES (?, ?, ?, ?, ?)";
     PreparedStatement statement= conexao.prepareStatement(sql);
     
-        statement.setString(1, a.getNome());
+         statement.setString(1, a.getNome());
         statement.setString(2, a.getCor());
         statement.setString(3, a.getTamanho ());
         statement.setString(4, a.getRaca());

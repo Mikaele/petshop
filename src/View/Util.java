@@ -14,9 +14,9 @@ import java.sql.Statement;
 public class Util {
     public static Connection conecta() throws SQLException {
     Connection conexao= null;
-    String url = "jdbc:mysql://localhost/PetShop"; //Nome da base de dados
+    String url = "jdbc:mysql://localhost/petshop"; //Nome da base de dados
     String user = "root"; //nome do usuario do Mysql
-    String password = "123456"; // senha do Mysql
+    String password = ""; // senha do Mysql
     try{
         conexao = DriverManager.getConnection(url, user, password);
     }   catch(SQLException sqlex){
@@ -51,47 +51,4 @@ public class Util {
     Statement stmt= conexao.createStatement();
     stmt.execute(sql);
     }    
-    public static void main (String[] args) throws SQLException{
-        criaBanco("PetShop");
-        criaTabela("Dono ","ID INT NULL AUTO _INCREMENT,"+
-                    "Cpf varchar(11) null,"+
-                    "Endereco varchar(45) null"+
-                    "Telefone  varchar(45) null"+
-                    "Nome varchar (45) null"+
-                    "Nascimento varchar(45) null"+
-                    "primary key(ID)");                
-    
-    criaTabela("Animal","IDAnimal INT NULL AUTO_INCREMENT,"+
-                "Raca VARCHAR(45) NULL,"+       
-                "Cor VARCHAR(45) NULL,"+
-                "Tamanho VARCHAR(20) NULL,"+
-                "Obs VARCHAR(45) NULL,"+
-                "Nome VARCHAR(45) NULL,"+
-                "Nascimento VARCHAR(45) NULL,"+
-                "Dono_ID INT NOT NULL,"+
-                "PRIMARY KEY (idAnimal, Dono_ID),"+
-                "INDEX `fk_Animal_Dono1_idx` (`Dono_ID` ASC),"+
-                "CONSTRAINT `fk_Animal_Dono1,"+
-                "FOREIGN KEY (`Dono_ID`),"+
-                "REFERENCES `mydb`.`Dono` (`ID`)"+
-                " ON DELETE NO ACTI");
-    
-    criaTabela("Servico","ID INT NULL AUTO_INCREMENT,"+
-               "Nome' VARCHAR(45) NULL,"+
-               "Descricao' VARCHAR(45) NULL,"+
-               "PRIMARY KEY ('ID')");
-    
-    criaTabela ("Agenda","Horario' INT NULL,"+
-            "ID` INT NULL AUTO_INCREMENT,"+
-            "Animal_idAnimal' INT NOT NULL,"+
-            "Servico_ID' INT NOT NULL,"+
-            "PRIMARY KEY (`ID`, `Animal_idAnimal`, `Servico_ID`),"+
-            "INDEX `fk_Agenda_Animal_idx` (`Animal_idAnimal` ASC),"+
-            "INDEX `fk_Agenda_Servico1_idx` (`Servico_ID` ASC),"+
-            "CONSTRAINT `fk_Agenda_Animal`,"+
-            "FOREIGN KEY (`Animal_idAnimal`),"+
-            "REFERENCES `mydb`.`Animal` (`idAnimal`),"+
-            "ON DELETE NO ACTION,"+
-            "ON UPDATE NO ACTION");
-    }              
 }
