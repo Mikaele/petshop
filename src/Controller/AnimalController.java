@@ -19,19 +19,20 @@ try {
     
     Util util= new Util();
     Connection conexao = util.conecta();  
-    String sql = "INSERT INTO Animal (nome, cor, tamanho, raca, nascimento) VALUES (?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO Animal (Dono_ID,nome, cor, tamanho, raca, nascimento) VALUES (?,?, ?, ?, ?, ?)";
     PreparedStatement statement= conexao.prepareStatement(sql);
-    
-         statement.setString(1, a.getNome());
-        statement.setString(2, a.getCor());
-        statement.setString(3, a.getTamanho ());
-        statement.setString(4, a.getRaca());
-        statement.setString(5, a.getNascimento());
-        
+        statement.setInt(1, a.getDonoId());
+        statement.setString(2, a.getNome());
+        statement.setString(3, a.getCor());
+        statement.setString(4, a.getTamanho ());
+        statement.setString(5, a.getRaca());
+        statement.setString(6, a.getNascimento());
+        System.out.println (statement);
     int rowsInserted = statement.executeUpdate(); 
     if (rowsInserted > 0){
     System.out.println ("Novo animal inserido com sucesso");
-}
+
+    }
         statement.close();
         conexao.close();
 } catch (SQLException e){

@@ -24,6 +24,19 @@ public class Animal {
         this.nascimento = nascimento;
     }
 
+    public Animal(int donoId, String nome, String cor, String raca, String tamanho, String obs, String nascimento) {
+        this.donoId = donoId;
+        this.nome = nome;
+        this.cor = cor;
+        this.raca = raca;
+        this.tamanho = tamanho;
+        this.obs = obs;
+        this.nascimento = nascimento;
+    }
+
+    
+
+
     public int getId() {
         return id;
     }

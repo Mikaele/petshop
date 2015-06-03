@@ -63,4 +63,21 @@ public class DonoController {
         return s;
     }
     
+    public int  getIdByNome(String nome){
+        int id=-1;
+            try {
+            Util util= new Util();
+            Connection conexao = util.conecta();
+            String sql= "Select ID from Dono where Nome like '"+nome+"'";
+                Statement statement = conexao.createStatement();
+          ResultSet result = statement.executeQuery(sql);
+           while (result.next()){               
+               id=result.getInt("ID");
+            }
+       } catch (SQLException ex) {
+            Logger.getLogger(DonoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
     }
